@@ -344,19 +344,37 @@ try {
     //===============================================================================================================
 
 
-    function fale(texto) {
-        let msg = texto
+  function fale(texto, genero = "f") {
+  let msg = texto
 
-        let speech = new SpeechSynthesisUtterance();
-        speech.lang = "pt-br";
+  let speech = new SpeechSynthesisUtterance();
+  speech.lang = "pt-br";
 
-        speech.text = msg;
-        speech.volume = 1;
-        speech.rate = 1;
-        speech.pitch = 1;
+  // Obtém a lista de vozes disponíveis
+  let voices = window.speechSynthesis.getVoices();
 
-        window.speechSynthesis.speak(speech);
-    }
+  // Converte o parâmetro genero para minúsculo
+  genero = genero.toLowerCase();
+
+  // Seleciona a voz feminina como padrão
+  let selectedVoice = voices.find(voice => voice.name.includes("Feminina"));
+  
+  // Se o parâmetro genero for igual a "m", seleciona a voz masculina
+  if (genero === "m") {
+    selectedVoice = voices.find(voice => voice.name.includes("Masculina"));
+  }
+
+  // Atribui a voz selecionada à propriedade voice da instância de SpeechSynthesisUtterance
+  speech.voice = selectedVoice;
+
+  speech.text = msg;
+  speech.volume = 1;
+  speech.rate = 1;
+  speech.pitch = 1;
+
+  window.speechSynthesis.speak(speech);
+}
+
 
 
 
