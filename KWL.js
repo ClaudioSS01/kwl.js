@@ -4238,6 +4238,10 @@ try {
 
 
 
+//a linha abaixo permite que eu exporte todas as funções do kwl.js semprecisar descrever uma a uma
+//de modo que elas possam ser importadas via url no deno com o comando a seguir:
+//import * from "https://github.com/ClaudioSS01/kwl.js/blob/main/KWL.js";
 
+export * from "./kwl.js";
 
 
